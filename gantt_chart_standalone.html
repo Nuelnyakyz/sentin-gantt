@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinAI-Ops Development Gantt Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #2d2d2d;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #028090;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #3d3d3d;
+            border-radius: 5px;
+        }
+        .legend h3 {
+            color: #F96167;
+            margin-bottom: 15px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 30px;
+            margin-bottom: 10px;
+        }
+        .color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid #fff;
+        }
+        .done { background-color: #a3be8c; }
+        .active { background-color: #ebcb8b; }
+        .pending { background-color: #81a1c1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SentinAI-Ops 6-Week Development Roadmap</h1>
+        <h2 style="text-align: center; color: #CADCFC; margin-bottom: 40px;">February 1 - March 15, 2026</h2>
+        
+        <div class="mermaid">
+gantt
+    title Development Timeline by Phase
+    dateFormat YYYY-MM-DD
+    axisFormat %b %d
+    
+    section Phase 1: Foundation
+    Project Init & Repo Setup           :done, p1t1, 2026-02-01, 5d
+    Backend API Foundation              :done, p1t2, 2026-02-06, 7d
+    Frontend Dashboard Foundation       :done, p1t3, 2026-02-06, 7d
+    Monitoring Stack Config             :done, p1t4, 2026-02-06, 10d
+    
+    section Phase 2: ML Models
+    Model 1 - Isolation Forest          :active, p2t1, 2026-02-15, 10d
+    Model 2 - NLP Log Analyzer          :active, p2t2, 2026-02-15, 10d
+    Model 3 - Behavioral Profiling      :active, p2t3, 2026-02-15, 14d
+    Dashboard UI Components             :active, p2t4, 2026-02-15, 14d
+    API-Frontend Integration            :p2t5, 2026-02-22, 6d
+    
+    section Phase 3: Intelligence
+    LLM Conversational Assistant        :p3t1, 2026-03-01, 7d
+    Chat Interface & Remediation UI     :p3t2, 2026-03-01, 7d
+    Multi-Channel Alerting              :p3t3, 2026-03-01, 7d
+    Authentication & Authorization      :p3t4, 2026-03-01, 7d
+    Security Hardening                  :p3t5, 2026-03-01, 7d
+    
+    section Phase 4: Testing & Demo
+    End-to-End Testing                  :p4t1, 2026-03-08, 6d
+    Attack Simulation & PoC             :p4t2, 2026-03-08, 4d
+    Demo Environment & Video            :p4t3, 2026-03-08, 6d
+    Documentation & Guide               :p4t4, 2026-03-12, 4d
+        </div>
+
+        <div class="legend">
+            <h3>Task Status Legend</h3>
+            <div class="legend-item">
+                <span class="color-box done"></span>
+                <span>Done - Completed tasks</span>
+            </div>
+            <div class="legend-item">
+                <span class="color-box active"></span>
+                <span>Active - In progress</span>
+            </div>
+            <div class="legend-item">
+                <span class="color-box pending"></span>
+                <span>Pending - Not yet started</span>
+            </div>
+        </div>
+
+        <div class="legend" style="margin-top: 20px;">
+            <h3>Phase Summary</h3>
+            <p><strong>Phase 1 (Weeks 1-2):</strong> Foundation & Infrastructure - Feb 1-14</p>
+            <p><strong>Phase 2 (Weeks 3-4):</strong> ML Models & Core Features - Feb 15-28</p>
+            <p><strong>Phase 3 (Week 5):</strong> Intelligence & User Experience - Mar 1-7</p>
+            <p><strong>Phase 4 (Week 6):</strong> Integration, Testing & Demo - Mar 8-15</p>
+        </div>
+
+        <div class="legend" style="margin-top: 20px;">
+            <h3>Team Tracks</h3>
+            <p><strong>Track A (3 members):</strong> Backend, ML Models, Infrastructure, Security</p>
+            <p><strong>Track B (2 members):</strong> Frontend, UI/UX, Dashboard, Demo</p>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 30,
+                barGap: 8,
+                topPadding: 50,
+                leftPadding: 120,
+                gridLineStartPadding: 35,
+                fontSize: 12,
+                numberSectionStyles: 4
+            }
+        });
+    </script>
+</body>
+</html>
