@@ -14,7 +14,7 @@
         color: #fff;
       }
       .container {
-        max-width: 1400px;
+        max-width: 1600px;
         margin: 0 auto;
         background-color: #2d2d2d;
         padding: 30px;
@@ -75,85 +75,156 @@
         System Architecture
       </h3>
       <div class="mermaid">
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
-flowchart TB
- subgraph subGraph0["PRESENTATION LAYER"]
-        B["Streamlit Dashboard<br/>Port 8501"]
-        A["User/Admin"]
-        B1["System Vitals View"]
-        B2["Alert Timeline"]
-        B3["AI Chat Interface"]
-  end
- subgraph subGraph1["APPLICATION LAYER"]
-        C["FastAPI Backend<br/>Port 8000<br/>Internal Network Only"]
-        C1["Security Module"]
-        C2["Context Builder"]
-  end
- subgraph subGraph2["INTELLIGENCE LAYER"]
-        D["Model 1:<br/>Isolation Forest<br/>Time-Series Anomaly"]
-        E["Model 2:<br/>NLP Log Analyzer<br/>Pattern Recognition"]
-        F["Model 3:<br/>Behavioral Profiler<br/>Process Monitor"]
-        G["LLM Assistant<br/>Flask Aggregator"]
-  end
- subgraph subGraph3["DATA LAYER"]
-        H["Prometheus<br/>Metrics Database"]
-        I["Loki<br/>Log Storage"]
-        J["psutil Agent<br/>Real-time Scanner"]
-  end
- subgraph subGraph4["INFRASTRUCTURE LAYER"]
-        K["System Exporters"]
-        L["Promtail Agent"]
-        M["LAMP Stack<br/>Critical Infrastructure"]
-  end
-    A -- HTTPS --> B
-    B -- "Real-time Metrics" --> B1
-    B -- Security Analysis --> B2
-    B -- Interactive Q&A --> B3
-    B -- REST API --> C
-    C -- JWT Auth --> C1
-    C -- Data Aggregation --> C2
-    C -- Query Metrics --> D
-    C -- Query Logs --> E
-    C -- Query Processes --> F
-    C -- Threat Context --> G
-    D -- PromQL --> H
-    E -- LogQL --> I
-    F -- Process Data --> J
-    H -- Scrape 5s --> K
-    I -- Stream Logs --> L
-    J -- Monitor --> M
-    K -- Monitor --> M
-    L -- Collect --> M
-    C -- Alerts --> N["Multi-Channel Notifier"]
-    N -- Send --> O1["Telegram"] & O2["Email"] & O3["SMS"]
+        %%{init: {'theme':'base', 'themeVariables': { 'fontSize':'13px'}}}%%
+        flowchart TD
+            %% User Layer
+            A["👤 User/Admin"]
+            
+            %% Presentation Layer
+            subgraph PRESENTATION["PRESENTATION LAYER"]
+                direction TB
+                B["Streamlit Dashboard<br/>Port 8501"]
+                B1["System Vitals View"]
+                B2["Alert Timeline"]
+                B3["AI Chat Interface"]
+            end
+            
+            %% Application Layer
+            subgraph APPLICATION["APPLICATION LAYER"]
+                direction TB
+                C["FastAPI Backend<br/>Port 8000"]
+                C1["Security Module"]
+                C2["Context Builder"]
+            end
+            
+            %% Intelligence Layer
+            subgraph INTELLIGENCE["INTELLIGENCE LAYER"]
+                direction LR
+                D["Model 1:<br/>Isolation Forest<br/>Time-Series Anomaly"]
+                E["Model 2:<br/>NLP Log Analyzer<br/>Pattern Recognition"]
+                F["Model 3:<br/>Behavioral Profiler<br/>Process Monitor"]
+                G["LLM Assistant<br/>Flask Aggregator"]
+            end
+            
+            %% Data Layer
+            subgraph DATA["DATA LAYER"]
+                direction LR
+                H["Prometheus<br/>Metrics DB"]
+                I["Loki<br/>Log Storage"]
+                J["psutil Agent<br/>Real-time Scanner"]
+            end
+            
+            %% Infrastructure Layer
+            subgraph INFRASTRUCTURE["INFRASTRUCTURE LAYER"]
+                direction LR
+                K["System Exporters"]
+                L["Promtail Agent"]
+                M["LAMP Stack<br/>Critical Infrastructure"]
+            end
+            
+            %% Alerting System
+            subgraph ALERTING["ALERTING SYSTEM"]
+                direction TB
+                N["Multi-Channel<br/>Notifier"]
+                O1["📱 Telegram"]
+                O2["📧 Email"]
+                O3["💬 SMS"]
+            end
+            
+            %% Blockchain Layer
+            subgraph BLOCKCHAIN["AUDIT & INTEGRITY LAYER"]
+                direction TB
+                BC["Hyperledger Fabric<br/>Blockchain Network"]
+                BC1["Immutable<br/>Audit Log"]
+                BC2["Server State<br/>Changes"]
+                BC3["Security<br/>Events"]
+                BC4["Admin<br/>Actions"]
+            end
 
-     A:::frontend
-     B:::frontend
-     B1:::frontend
-     B2:::frontend
-     B3:::frontend
-     C:::backend
-     C1:::backend
-     C2:::backend
-     D:::ml
-     E:::ml
-     F:::ml
-     G:::backend
-     H:::data
-     I:::data
-     J:::data
-     K:::infra
-     L:::infra
-     M:::infra
-     N:::backend
-     O1:::backend
-     O2:::backend
-     O3:::backend
-    classDef frontend fill:#F96167,stroke:#fff,stroke-width:2px,color:#fff
-    classDef backend fill:#028090,stroke:#fff,stroke-width:2px,color:#fff
-    classDef ml fill:#990011,stroke:#fff,stroke-width:2px,color:#fff
-    classDef data fill:#36454F,stroke:#fff,stroke-width:2px,color:#fff
-    classDef infra fill:#A26769,stroke:#fff,stroke-width:2px,color:#fff
+            %% Connections
+            A --> B
+            B --> B1
+            B --> B2
+            B --> B3
+            
+            B1 --> C
+            B2 --> C
+            B3 --> C
+            
+            C --> C1
+            C --> C2
+            
+            C1 --> D
+            C1 --> E
+            C1 --> F
+            C2 --> G
+            
+            D --> H
+            E --> I
+            F --> J
+            
+            H --> K
+            I --> L
+            J --> M
+            K --> M
+            L --> M
+            
+            C1 --> N
+            N --> O1
+            N --> O2
+            N --> O3
+            
+            C1 --> BC
+            G --> BC
+            N --> BC
+            
+            BC --> BC1
+            BC --> BC2
+            BC --> BC3
+            BC --> BC4
+
+            %% Styling
+            A:::frontend
+            B:::frontend
+            B1:::frontend
+            B2:::frontend
+            B3:::frontend
+            
+            C:::backend
+            C1:::backend
+            C2:::backend
+            
+            D:::ml
+            E:::ml
+            F:::ml
+            G:::backend
+            
+            H:::data
+            I:::data
+            J:::data
+            
+            K:::infra
+            L:::infra
+            M:::infra
+            
+            N:::backend
+            O1:::alert
+            O2:::alert
+            O3:::alert
+            
+            BC:::blockchain
+            BC1:::blockchain
+            BC2:::blockchain
+            BC3:::blockchain
+            BC4:::blockchain
+
+            classDef frontend fill:#F96167,stroke:#fff,stroke-width:2px,color:#fff
+            classDef backend fill:#028090,stroke:#fff,stroke-width:2px,color:#fff
+            classDef ml fill:#990011,stroke:#fff,stroke-width:2px,color:#fff
+            classDef data fill:#36454F,stroke:#fff,stroke-width:2px,color:#fff
+            classDef infra fill:#A26769,stroke:#fff,stroke-width:2px,color:#fff
+            classDef blockchain fill:#6B4E71,stroke:#fff,stroke-width:2px,color:#fff
+            classDef alert fill:#F0A202,stroke:#fff,stroke-width:2px,color:#fff
       </div>
 
       <h3
@@ -168,35 +239,46 @@ flowchart TB
       </h3>
       <div class="mermaid">
         gantt
-          title Development Timeline by Phase
-          dateFormat YYYY-MM-DD
-          axisFormat %b %d
-          
-          section Phase 1: Foundation
-            Project Init & Repo Setup           :done, p1t1, 2026-02-01, 5d
-            Backend API Foundation              :done, p1t2, 2026-02-06, 7d
-            Frontend Dashboard Foundation       :done, p1t3, 2026-02-06, 7d
-            Monitoring Stack Config             :done, p1t4, 2026-02-06, 10d
-          
-          section Phase 2: ML Models
-            Model 1 - Isolation Forest          :active, p2t1, 2026-02-15, 10d
-            Model 2 - NLP Log Analyzer          :active, p2t2, 2026-02-15, 10d
-            Model 3 - Behavioral Profiling      :active, p2t3, 2026-02-15, 14d
-            Dashboard UI Components             :active, p2t4, 2026-02-15, 14d
-            API-Frontend Integration            :p2t5, 2026-02-22, 6d
-          
-          section Phase 3: Intelligence
-            LLM Conversational Assistant        :p3t1, 2026-03-01, 7d
-            Chat Interface & Remediation UI     :p3t2, 2026-03-01, 7d
-            Multi-Channel Alerting              :p3t3, 2026-03-01, 7d
-            Authentication & Authorization      :p3t4, 2026-03-01, 7d
-            Security Hardening                  :p3t5, 2026-03-01, 7d
-          
-          section Phase 4: Testing & Demo
-            End-to-End Testing                  :p4t1, 2026-03-08, 6d
-            Attack Simulation & PoC             :p4t2, 2026-03-08, 4d
-            Demo Environment & Video            :p4t3, 2026-03-08, 6d
-            Documentation & Guide               :p4t4, 2026-03-12, 4d
+            title Development Timeline by Phase
+            dateFormat YYYY-MM-DD
+            axisFormat %b %d
+            
+            section Phase 1: Foundation
+            T1.1 Project Init                    :done, p1t1, 2026-02-01, 5d
+            T1.2 FastAPI Microservice            :done, p1t2, 2026-02-01, 7d
+            T1.3 Laravel Setup                   :done, p1t3, 2026-02-01, 7d
+            T1.4 Monitoring Stack                :done, p1t4, 2026-02-01, 14d
+            
+            section Phase 2: ML & Core
+            T2.1 Isolation Forest                :active, p2t1, 2026-02-15, 10d
+            T2.2 NLP Log Analyzer                :active, p2t2, 2026-02-15, 10d
+            T2.3 Behavioral Profiling            :active, p2t3, 2026-02-15, 14d
+            T2.4 Blade Livewire UI               :active, p2t4, 2026-02-15, 14d
+            T2.5 Orchestrator Handshake          :p2t5, 2026-02-22, 7d
+            
+            section Phase 3: Intelligence
+            T3.1 LLM Assistant                   :p3t1, 2026-03-01, 7d
+            T3.2 Chat Interface                  :p3t2, 2026-03-01, 7d
+            T3.3 Multi-Channel Alert             :p3t3, 2026-03-01, 7d
+            T3.4 Auth & RBAC                     :p3t4, 2026-03-01, 7d
+            T3.5 Security Hardening              :p3t5, 2026-03-01, 7d
+            
+            section Phase 4: Integration
+            T4.1 End-to-End Test                 :p4t1, 2026-03-08, 6d
+            T4.2 Attack Sim                      :p4t2, 2026-03-08, 4d
+            T4.3 Demo Video                      :p4t3, 2026-03-08, 6d
+            T4.4 Documentation                   :p4t4, 2026-03-12, 4d
+      </div>
+
+      <div class="legend" style="margin-top: 20px">
+        <h3>Layer Descriptions</h3>
+        <p><strong>Presentation Layer:</strong> User-facing dashboard with real-time monitoring views</p>
+        <p><strong>Application Layer:</strong> Core backend services handling security and context aggregation</p>
+        <p><strong>Intelligence Layer:</strong> ML models and AI assistant for threat detection</p>
+        <p><strong>Data Layer:</strong> Time-series metrics, logs, and process monitoring</p>
+        <p><strong>Infrastructure Layer:</strong> System monitoring agents and critical services</p>
+        <p><strong>Alerting System:</strong> Multi-channel notification delivery</p>
+        <p><strong>Audit & Integrity Layer:</strong> Blockchain-based immutable audit trail</p>
       </div>
 
       <div class="legend" style="margin-top: 20px">
@@ -223,11 +305,42 @@ flowchart TB
         <h3>Team Tracks</h3>
         <p>
           <strong>Track A (3 members):</strong> Backend, ML Models,
-          Infrastructure, Security
+          Infrastructure, Security, Blockchain
         </p>
         <p>
           <strong>Track B (2 members):</strong> Frontend, UI/UX, Dashboard, Demo
         </p>
+      </div>
+
+      <div class="legend" style="margin-top: 20px">
+        <h3>Technology Stack Highlights</h3>
+        <p><strong>Frontend/UI:</strong> Laravel Blade + Tailwind (Server-side rendered, responsive dashboard)</p>
+        <p><strong>Orchestrator:</strong> Laravel (PHP 8.x) - Core logic: Auth, RBAC, Eloquent DB, Alert Queues</p>
+        <p><strong>ML Engine:</strong> FastAPI (Python) - High-performance API for AI models (Isolation Forest, NLP)</p>
+        <p><strong>Auth System:</strong> Laravel Sanctum - Secure session and token-based authentication</p>
+        <p><strong>Alerting:</strong> Laravel Queues - Asynchronous multi-channel notifications (Telegram/SMS)</p>
+        <p><strong>Metrics:</strong> Prometheus - Time-series database with PromQL</p>
+        <p><strong>Logs:</strong> Loki + Promtail - Log aggregation for ML analysis</p>
+        <p><strong>Audit & Integrity:</strong> Hyperledger Fabric (Blockchain) - Immutable, tamper-evident ledger for server state changes, security events, and administrative actions</p>
+      </div>
+
+      <div class="legend" style="margin-top: 20px">
+        <h3>Blockchain Integration Details</h3>
+        <p><strong>Purpose:</strong> Provides an immutable audit trail ensuring transparency and accountability</p>
+        <p><strong>What Gets Recorded:</strong></p>
+        <ul style="margin-left: 20px;">
+          <li>Server state changes and configuration modifications</li>
+          <li>Security events and threat detections</li>
+          <li>Administrative actions and access logs</li>
+          <li>Alert generation and response actions</li>
+        </ul>
+        <p><strong>Benefits:</strong></p>
+        <ul style="margin-left: 20px;">
+          <li>Tamper-proof audit logs for compliance and forensics</li>
+          <li>Cryptographic verification of all security events</li>
+          <li>Transparent accountability for system changes</li>
+          <li>Enhanced trust in security monitoring data</li>
+        </ul>
       </div>
     </div>
 
@@ -237,14 +350,21 @@ flowchart TB
         theme: "default",
         gantt: {
           titleTopMargin: 25,
-          barHeight: 30,
-          barGap: 8,
+          barHeight: 35,
+          barGap: 4,
           topPadding: 50,
-          leftPadding: 120,
+          leftPadding: 200,
           gridLineStartPadding: 35,
-          fontSize: 12,
+          fontSize: 11,
           numberSectionStyles: 4,
+          sectionFontSize: 12,
         },
+        flowchart: {
+          nodeSpacing: 60,
+          rankSpacing: 60,
+          curve: 'basis',
+          padding: 15
+        }
       });
     </script>
   </body>
